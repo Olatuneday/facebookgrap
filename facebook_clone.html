@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone</title>
+</head>
+<body>
+    <style>
+        body {
+            display: block;
+            overflow-y: scroll;
+            background: #fff;
+            color: #1c1e21;
+            direction: ltr;
+            line-height: 1.34;
+            margin: 0;
+            padding: 0;
+            unicode-bidi: embed;
+        }
+        body, button, input, label, select, td, textarea {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+        }
+        .main-div {
+            font-family: inherit;
+            overflow: initial;
+        }
+        .sub-main-div {
+            font-family: inherit;
+            margin: 0 auto;
+            position: relative;
+            zoom: 1;
+        }
+        .center-div {
+            background: #f0f2f5;
+            font-family: inherit;
+            margin: 0;
+            outline: none;
+            padding: 0;
+            width: auto;
+            min-height: 640px;
+            zoom: 1;
+        }
+        center {
+            padding-bottom: 112px;
+            padding-top: 72px;
+            background: #f0f2f5;
+            min-width: 500px;
+        }
+        .table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Center Styles */
+        .fb-form-div {
+            margin: 0 auto;
+            padding: 20px 0;
+            position: relative;
+            width: 980px;
+        }
+        @media only screen and (max-width: 1075px){
+            .fb-form-div {
+                height: 496px;
+                margin: 0 40px;
+                width: auto;
+            }
+        }
+        .fb-div {
+            width: 580px;
+            box-sizing: border-box;
+            margin-right: 0;
+            padding-right: 32px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .fb-logo-div {
+            margin: 0;
+            padding: 112px 0 16px;
+        }
+        .fb_logo {
+            margin: -28px;
+            height: 106px;
+            border: 0;
+        }
+        .fb-h2 {
+            margin: 0;
+            padding:0 0 20px;
+            width: 500px;
+            font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+            font-size: 28px;
+            font-weight: normal;
+            line-height: 32px;
+            color: #1c1e21;
+            display: inline-block;
+            letter-spacing: normal;
+            text-rendering: optimizelegibility;
+        }
+
+        /* form div */
+        .form-outer-div2 {
+            font-family: inherit;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .form-outer-div1 {
+            font-family: inherit;
+            height: 456px;
+            width: 396px;
+        }
+        .form-div {
+            font-family: inherit;
+            text-align: center;
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+            box-sizing: border-box;
+            margin: 40px 0 0;
+            padding: 20px 0 28px;
+            width: 396px;
+            padding-top: 10px;
+            padding-bottom: 24px;
+        }
+        .form {
+            font-family: inherit;
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+        .input-div {
+            font-size: 17px;
+            width: 364px;
+            display: inline-block;
+            margin: auto;
+            padding: 6px 0px;
+        }
+        .form input[type="text"], .form input[type="password"] {
+            font-family: inherit;
+            border-radius: 6px;
+            font-size: 17px;
+            padding: 14px 16px;
+            width: 330px;
+            border: 1px solid rgb(221, 223, 226);
+            color: rgb(29, 33, 41);
+            height: 22px;
+            line-height: 16px;
+            vertical-align: middle;
+            appearance: none;
+            margin: 0px;
+        }
+        .login-btn-div {
+            padding-top: 6px;
+        }
+        .login-btn-div>button {
+            margin: 0px;
+            background-color: rgb(24, 119, 242);
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            line-height: 48px;
+            padding: 0px 16px;
+            width: 332px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            white-space: nowrap;
+            color: rgb(255, 255, 255);
+            transition: background-color 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s, box-shadow 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s, transform 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s;
+            box-sizing: content-box;
+            -webkit-font-smoothing: antialiased;
+            font-weight: bold;
+            position: relative;
+            text-align: center;
+            text-shadow: none;
+            vertical-align: middle;
+        }
+        .forgot-pwd-div {
+            font-family: inherit;
+            margin-top: 16px;
+        }
+        .forgot-pwd-div>a {
+            font-family: inherit;
+            color: rgb(24, 119, 242);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .separator {
+            font-family: inherit;
+            align-items: center;
+            border-bottom: 1px solid rgb(218, 221, 225);
+            display: flex;
+            margin: 20px 16px;
+            text-align: center;
+        }
+        .create-btn-div {
+            font-family: inherit;
+            padding-top: 6px;
+        }
+        .create-btn-div>a {
+            font-family: inherit;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            line-height: 48px;
+            padding: 0px 16px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            white-space: nowrap;
+            background-color: rgb(66, 183, 42);
+            border-color: rgb(66, 183, 42);
+            color: rgb(255, 255, 255);
+            transition: background-color 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s, box-shadow 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s, transform 200ms cubic-bezier(0.08, 0.52, 0.52, 1) 0s;
+            box-sizing: content-box;
+            -webkit-font-smoothing: antialiased;
+            font-weight: bold;
+            position: relative;
+            text-align: center;
+            text-shadow: none;
+            vertical-align: middle;
+        }
+        .create-page-div {
+            border-top: none;
+            color: #1c1e21;
+            font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding-top: 0;
+            margin-top: 28px;
+            text-align: center;
+        }
+        .create-page-div>a {
+            font-family: SFProText-Semibold, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgb(28, 30, 33);
+        }
+        .create-page-div>a:hover {
+            text-decoration: underline;
+        }
+
+        /* Bottom Styles */
+        .bottom-div {
+            font-family: inherit;
+        }
+        .sub-bottom-div {
+            font-family: inherit;
+            padding-top: 20px;
+        }
+        #pageFooter {
+            color: #737373;
+            margin: 0 auto;
+            width: 980px;
+        }
+        a {
+            color: #385898;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        ul>li>a {
+            color: #8a8d91;
+        }
+        #pageFooter a {
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        #pageFooter a:hover {
+            text-decoration: underline;
+        }
+
+        #pageFooter a:has(i):hover {
+            text-decoration: none;
+        }
+        #pageFooter a:last-child {
+            margin-right: 0;
+        }
+        @media only screen and (max-width: 1075px){
+            #pageFooter {
+                margin: 0 40px;
+                width: auto;
+            }
+        }
+        .localeSelectorList {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        ul {
+            padding-top: 8px;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        #contentCurve {
+            border-bottom: 1px solid #dddfe2;
+            font-size: 1px;
+            height: 8px;
+            margin-bottom: 8px;
+        }
+        ul>li {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        ul>li {
+            padding-right: 0;
+        }
+        ul>li {
+            vertical-align: top;
+        }
+        ul>li {
+            border-width: 0 0 0 1px;
+            display: inline-block;
+        }
+        ul>li:first-child {
+            padding-left: 0;
+        }
+        ul>li:last-child {
+            padding-right: 0;
+        }
+        ul.localeSelectorList>li:last-child>a {
+            background-color:#dddfe2;
+        }
+        ul.localeSelectorList>li:last-child>a>i {
+            border: 1px solid #ccd0d5;
+            border-radius: 2px;
+            box-sizing: content-box;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+            font-weight:bolder;
+            justify-content: center;
+            padding: 0 8px;
+            position: relative;
+            text-align: center;
+            text-shadow: none;
+            vertical-align: middle;
+        }
+        ul.localeSelectorList>li:last-child>a {
+            background-color: #f5f6f7;
+            border-color: #ccd0d5;
+            color: #4b4f56;
+        }
+        #pageFooter .pageFooterLinkList {
+            line-height: 1.6;
+            margin-left: -20px;
+        }
+        .pageFooterLinkList>li {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .pageFooterLinkList>li {
+            padding-right: 0;
+        }
+        .pageFooterLinkList>li:first-child {
+            padding-left: 20px;
+        }
+        .uiList>li:first-child {
+            border-width: 0;
+        }
+        .pageFooterLinkList>li {
+            vertical-align: top;
+        }
+        .pageFooterLinkList>li {
+            border-width: 0 0 0 1px;
+            display: inline-block;
+        }
+        .copyright {
+            font-size: 11px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <div class="main-div">
+        <div class="sub-main-div">
+            <div class="center-div">
+                <div class="dumb-div">
+                    <center>
+                        <table border="0" class="table _8esk">
+                            <tr>
+                                <td>
+                                    <div class="fb-form-div">
+                                        <div class="fb-div">
+                                            <div class="fb-logo-div">
+                                                <img class="fb_logo _8ilh img" src="./facebook.svg" alt="Facebook">
+                                            </div>
+                                            <h2 class="fb-h2">Facebook helps you connect and share with the people in your life.</h2>
+                                        </div>
+                                        <div class="form-outer-div2">
+                                            <div class="form-outer-div1">
+                                                <div class="form-div">
+                                                    <form class="form" action="" method="post" onsubmit="" id="">
+                                                        <div class="email-password-div">
+                                                            <div class="input-div">
+                                                                <input type="text" name="email" id="email" placeholder="Email address or phone number" autofocus="1" aria-label="Email address or phone number">
+                                                            </div>
+                                                            <div class="input-div">
+                                                                <input type="password" name="password" id="password" placeholder="Password" aria-label="Password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="login-btn-div">
+                                                            <button value="1" name="login" type="submit" id="login">Log in</button>
+                                                        </div>
+                                                        <div class="forgot-pwd-div">
+                                                            <a href="#">Forgotten password?</a>
+                                                        </div>
+                                                        <div class="separator"></div>
+                                                        <div class="create-btn-div">
+                                                            <a role="button" href="#" id="create-btn" rel="async">Create new account</a>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div id="reg_pages_msg" class="create-page-div">
+                                                    <a href="#">Create a Page</a> for a celebrity, brand or business.
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>    
+                </div>
+            </div>
+            <div class="bottom-div">
+                <div class="sub-bottom-div">
+                    <div id="pageFooter">
+                        <ul class="uiList localeSelectorList">
+                            <li>English (UK)</li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Hausa'); return false" title="Hausa">Hausa</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: French'); return false" title="French (France)">Français (France)</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Portuguese'); return false;" title="Portuguese (Brazil)">Português (Brasil)</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Español'); return false;" title="Spanish">Español</a></li>
+                            <li><a dir="rtl" href="#" onclick="alert('Lang: Arabic'); return false;" title="Arabic">العربية</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Indonesian'); return false;" title="Indonesian">Bahasa Indonesia</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: German'); return false;" title="German">Deutsch</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Japanese'); return false;" title="Japanese">日本語</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Italian'); return false;" title="Italian">Italiano</a></li>
+                            <li><a dir="ltr" href="#" onclick="alert('Lang: Hindi'); return false;" title="Hindi">हिन्दी</a></li>
+                            <li><a role="button" href="#" title="Show more languages"><i>+</i></a></li>
+                        </ul>
+                        <div id="contentCurve"></div>
+                        <div id="pageFooterChildren" role="contentinfo" aria-label="Facebook site links">
+                            <ul class="uiList pageFooterLinkList">
+                                <li><a href="#" title="Sign up for Facebook">Sign Up</a></li>
+                                <li><a href="#" title="Log in to Facebook">Log in</a></li>
+                                <li><a href="#" title="Take a look at Messenger.">Messenger</a></li>
+                                <li><a href="#" title="Facebook Lite for Android.">Facebook Lite</a></li>
+                                <li><a href="#" title="Browse our Watch videos.">Watch</a></li>
+                                <li><a href="#" title="Take a look at popular places on Facebook.">Places</a></li>
+                                <li><a href="#" title="Check out Facebook games.">Games</a></li>
+                                <li><a href="#" title="Buy and sell on Facebook Marketplace.">Marketplace</a></li>
+                                <li><a href="#" title="Learn more about Meta Pay" target="_blank">Meta Pay</a></li>
+                                <li><a href="#" title="Learn more about Oculus" target="_blank">Oculus</a></li>
+                                <li><a href="#" title="Learn more about Facebook Portal" target="_blank">Portal</a></li>
+                                <li><a href="#" title="Take a look at Instagram" target="_blank">Instagram</a></li>
+                                <li><a href="#" title="Take a look at Bulletin newsletter">Bulletin</a></li>
+                                <li><a href="#" title="Donate to worthy causes.">Fundraisers</a></li>
+                                <li><a href="#" title="Browse our Facebook Services directory.">Services</a></li>
+                                <li><a href="#" title="See the Voting Information Centre">Voting Information Centre</a></li>
+                                <li><a href="#" title="Learn how we collect, use and share information to support Facebook.">Privacy Policy</a></li>
+                                <li><a href="#" title="Learn how to manage and control your privacy on Facebook.">Privacy Centre</a></li>
+                                <li><a href="#" title="Explore our groups.">Groups</a></li>
+                                <li><a href="#" accesskey="8" title="Read our blog, discover the resource centre and find job opportunities.">About</a></li>
+                                <li><a href="#" title="Advertise on Facebook">Create ad</a></li>
+                                <li><a href="#" title="Create a Page">Create Page</a></li>
+                                <li><a href="#" title="Develop on our platform.">Developers</a></li>
+                                <li><a href="#" title="Make your next career move to our brilliant company.">Careers</a></li>
+                                <li><a href="#" title="Learn about cookies and Facebook.">Cookies</a></li>
+                                <li><a class="_41ug" href="#" title="Learn about AdChoices.">AdChoices<i class="img sp_h4Swrc8tiWJ sx_22044a"></i></a></li>
+                                <li><a href="#" accesskey="9" title="Review our terms and policies.">Terms</a></li>
+                                <li><a href="#" accesskey="0" title="Visit our Help Centre.">Help</a></li>
+                                <li><a href="#" title="Visit our contact uploading and non-users notice.">Contact uploading and non-users</a></li>
+                                <li><a accesskey="6" class="accessible_elem" href="#" title="View and edit your Facebook settings.">Settings</a></li>
+                                <li><a accesskey="7" class="accessible_elem" href="#" title="View your activity log">Activity log</a></li>
+                            </ul>
+                        </div>
+                        <div class="copyright"><div><span> Meta © 2023</span></div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</body>
+</html>
